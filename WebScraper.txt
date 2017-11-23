@@ -1,0 +1,160 @@
+wind speed categories
+    at least 74 mph (33 m/s; 64 kn; 119 km/h) (Category 1). 
+    The highest classification in the scale, 
+    Category 5, consists of storms with sustained winds exceeding 156 mph (70 m/s; 136 kn; 251 km/h).
+
+https://en.wikipedia.org/wiki/Saffir%E2%80%93Simpson_scale
+
+potentially have a wind speed categorizer part of the thing
+buzzer goes off when the wind speed reaches Category 1
+
+
+
+
+https://weather.com/weather/today/l/33.42,-111.83
+
+    span id = dp0-details-wind
+        span inside = wind speed
+    
+
+    <div class="today_nowcard-temp">
+        <span class="">83
+            <sup>°
+            </sup>
+        </span>
+    </div>
+
+
+
+CODE----------
+    import re
+    from urllib.request import urlopen
+    from urllib.request import HTTPError
+
+               
+    def getWindSpeed():
+        try:
+            html = urlopen("https://weather.com/weather/today/l/33.42,-111.83")
+        except HTTPError as e:
+            return None
+        try:
+            bsObj = BeautifulSoup(html.read())
+            windspeed = bsObj.findAll("span", {"id" : "dp0-details-wind" })[0].find("span").get_text()
+            matchObj  = re.search(r'(\d+)', windspeed)
+            windspeed = matchObj.group()        
+        except AttributeError as e:
+            return None
+        return windspeed
+
+
+    def getTemperature():
+        try:
+            html = urlopen("https://weather.com/weather/today/l/33.42,-111.83")
+        except HTTPError as e:
+            return None
+        try:
+            bsObj = BeautifulSoup(html.read())
+            temp = bsObj.findAll("div", {"class" : "today_nowcard-temp" })[0].find("span").get_text()
+        except AttributeError as e:
+            return None
+        return temp[0:2] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://www.timeanddate.com/weather/usa/mesa
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+<div id="qlook" class="three columns">
+    <div class="h1">
+        Now
+    </div>
+    <img id="cur-weather" class="mtt" title="Passing clouds." src="//c.tadst.com/gfx/w/80/wt-2.png" width="80" height="80">
+    <div class="h2">79&nbsp;°F</div>
+    <p>Passing clouds.</p>
+    <br class="clear">
+    <p>Feels Like: 78&nbsp;°F
+        <br>Forecast: 55 / 84&nbsp;°F
+        <br>Wind: 3 mph 
+        <span class="comp sa2" title="Wind blowing from 200° South-southwest to North-northeast">
+        ↑
+        </span> from Southwest
+    </p>
+</div>
+
+
+<div id="qfacts" class="five columns">
+    <p>
+        <span class="four">
+            Location: 
+        </span> 
+        <span id="wt-loc" title="Mesa / Falcon Field">
+            Mesa / Falcon Field
+        </span>
+    </p>
+    <p>
+        <span class="four">Current Time: 
+        </span> 
+        <span id="wtct">
+            Nov 23, 2017 at 12:50:36 pm
+        </span>
+    </p>
+    <p>
+        <span class="four">
+            Latest Report: 
+        </span> 
+        Nov 23, 2017 at 11:47 am
+    </p>
+    <br>
+    <p>
+        <span class="four">
+            Visibility: </span> 40&nbsp;mi
+    </p>
+    <p>
+        <span class="four">
+            Pressure: 
+        </span> 30.08 "Hg
+    </p>
+    <p>
+        <span class="four">
+            Humidity: 
+        </span> 20%
+    </p>
+    <p>
+        <span class="four">Dew Point: 
+        </span> 
+        34&nbsp;°F
+    </p>
+</div>
+    
