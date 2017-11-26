@@ -47,8 +47,11 @@ int main(void) {
     PORTB |= (1 << PB0); //digitalWrite (enableB, HIGH); //enable the motor    
     PORTB &= ~(1 << PB1); //        digitalWrite (MotorB1, LOW);
     PORTB |=  (1 << PB2); //        digitalWrite (MotorB2, HIGH);
-
+    int speed = 3;
+    float temperature = 0.0;
+    
     while (1) {
+        
         /* 
             uint8_t receiveByte(void) {
               loop_until_bit_is_set(UCSR0A, RXC0);       
@@ -67,8 +70,11 @@ int main(void) {
             clear_bit(UCSR0A, RXC0);
 
         } */
-        
-        pwmMotor(50);
+        if( bit_is_set(UCSR0A, RXC0) ){
+            speed = receiveByte();        
+        }
+        //int temperature = getNumber();
+        pwmMotor(speed);
     /*
         PORTB |= (1 << PB0); //digitalWrite (enableB, HIGH); //enable the motor    
         _delay_ms(1000);

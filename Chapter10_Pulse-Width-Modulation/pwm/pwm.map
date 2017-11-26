@@ -20,10 +20,6 @@ Discarded input sections
                 0x00000000       0x6e pwm.o
  .text          0x00000000        0x0 ../../AVR-Programming-Library/USART.o
  .bss           0x00000000        0x0 ../../AVR-Programming-Library/USART.o
- .text.transmitByte
-                0x00000000        0xe ../../AVR-Programming-Library/USART.o
- .text.receiveByte
-                0x00000000        0xe ../../AVR-Programming-Library/USART.o
  .text.printString
                 0x00000000       0x26 ../../AVR-Programming-Library/USART.o
  .text.readString
@@ -38,8 +34,6 @@ Discarded input sections
                 0x00000000        0xc ../../AVR-Programming-Library/USART.o
  .text.printHexByte
                 0x00000000       0x1e ../../AVR-Programming-Library/USART.o
- .text.getNumber
-                0x00000000       0x4a ../../AVR-Programming-Library/USART.o
  .text          0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
  .bss           0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
  .text.libgcc.mul
@@ -211,7 +205,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x16a
+.text           0x00000000      0x1e2
  *(.vectors)
  .vectors       0x00000000       0x68 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm168.o
                 0x00000000                __vectors
@@ -299,23 +293,32 @@ END GROUP
                 0x00000096       0x42 pwm.o
                 0x00000096                pwmMotor
  .text.startup.main
-                0x000000d8       0x1c pwm.o
+                0x000000d8       0x2e pwm.o
                 0x000000d8                main
  .text.initUSART
-                0x000000f4       0x22 ../../AVR-Programming-Library/USART.o
-                0x000000f4                initUSART
+                0x00000106       0x22 ../../AVR-Programming-Library/USART.o
+                0x00000106                initUSART
+ .text.transmitByte
+                0x00000128        0xe ../../AVR-Programming-Library/USART.o
+                0x00000128                transmitByte
+ .text.receiveByte
+                0x00000136        0xe ../../AVR-Programming-Library/USART.o
+                0x00000136                receiveByte
+ .text.getNumber
+                0x00000144       0x4a ../../AVR-Programming-Library/USART.o
+                0x00000144                getNumber
  .text.libgcc.div
-                0x00000116       0x28 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
-                0x00000116                __udivmodhi4
+                0x0000018e       0x28 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000018e                __udivmodhi4
  .text.libgcc.div
-                0x0000013e       0x28 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
-                0x0000013e                __divmodhi4
-                0x0000013e                _div
-                0x00000166                . = ALIGN (0x2)
+                0x000001b6       0x28 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+                0x000001b6                __divmodhi4
+                0x000001b6                _div
+                0x000001de                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000166        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
-                0x00000166                exit
-                0x00000166                _exit
+ .fini9         0x000001de        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x000001de                exit
+                0x000001de                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -334,11 +337,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000166        0x4 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .fini0         0x000001de        0x4 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x0000016a                _etext = .
+                0x000001e2                _etext = .
 
-.data           0x00800100        0x0 load address 0x0000016a
+.data           0x00800100        0x0 load address 0x000001e2
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm168.o
@@ -362,8 +365,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 0x00800100                PROVIDE (__bss_end, .)
-                0x0000016a                __data_load_start = LOADADDR (.data)
-                0x0000016a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000001e2                __data_load_start = LOADADDR (.data)
+                0x000001e2                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800100        0x0
                 0x00800100                PROVIDE (__noinit_start, .)
@@ -445,50 +448,50 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xa01
+.debug_info     0x00000000      0xa3e
  *(.debug_info)
- .debug_info    0x00000000      0x331 pwm.o
- .debug_info    0x00000331      0x3d8 ../../AVR-Programming-Library/USART.o
- .debug_info    0x00000709       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
- .debug_info    0x000007c7       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
- .debug_info    0x00000885       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
- .debug_info    0x00000943       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .debug_info    0x00000000      0x36e pwm.o
+ .debug_info    0x0000036e      0x3d8 ../../AVR-Programming-Library/USART.o
+ .debug_info    0x00000746       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
+ .debug_info    0x00000804       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+ .debug_info    0x000008c2       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+ .debug_info    0x00000980       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x36f
+.debug_abbrev   0x00000000      0x37e
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x1b3 pwm.o
- .debug_abbrev  0x000001b3      0x16c ../../AVR-Programming-Library/USART.o
- .debug_abbrev  0x0000031f       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
- .debug_abbrev  0x00000333       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
- .debug_abbrev  0x00000347       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
- .debug_abbrev  0x0000035b       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .debug_abbrev  0x00000000      0x1c2 pwm.o
+ .debug_abbrev  0x000001c2      0x16c ../../AVR-Programming-Library/USART.o
+ .debug_abbrev  0x0000032e       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
+ .debug_abbrev  0x00000342       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+ .debug_abbrev  0x00000356       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+ .debug_abbrev  0x0000036a       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
 
-.debug_line     0x00000000      0x461
+.debug_line     0x00000000      0x463
  *(.debug_line)
- .debug_line    0x00000000      0x152 pwm.o
- .debug_line    0x00000152      0x182 ../../AVR-Programming-Library/USART.o
- .debug_line    0x000002d4       0x62 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
- .debug_line    0x00000336       0x6a /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
- .debug_line    0x000003a0       0x69 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
- .debug_line    0x00000409       0x58 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .debug_line    0x00000000      0x154 pwm.o
+ .debug_line    0x00000154      0x182 ../../AVR-Programming-Library/USART.o
+ .debug_line    0x000002d6       0x62 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
+ .debug_line    0x00000338       0x6a /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+ .debug_line    0x000003a2       0x69 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+ .debug_line    0x0000040b       0x58 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
 
 .debug_frame    0x00000000      0x1d8
  *(.debug_frame)
  .debug_frame   0x00000000       0x8c pwm.o
  .debug_frame   0x0000008c      0x14c ../../AVR-Programming-Library/USART.o
 
-.debug_str      0x00000000      0x3c0
+.debug_str      0x00000000      0x3e1
  *(.debug_str)
- .debug_str     0x00000000      0x21b pwm.o
-                                0x266 (size before relaxing)
- .debug_str     0x0000021b      0x1a5 ../../AVR-Programming-Library/USART.o
+ .debug_str     0x00000000      0x246 pwm.o
+                                0x291 (size before relaxing)
+ .debug_str     0x00000246      0x19b ../../AVR-Programming-Library/USART.o
                                 0x261 (size before relaxing)
 
-.debug_loc      0x00000000      0x846
+.debug_loc      0x00000000      0x87a
  *(.debug_loc)
- .debug_loc     0x00000000      0x305 pwm.o
- .debug_loc     0x00000305      0x541 ../../AVR-Programming-Library/USART.o
+ .debug_loc     0x00000000      0x339 pwm.o
+ .debug_loc     0x00000339      0x541 ../../AVR-Programming-Library/USART.o
 
 .debug_macinfo
  *(.debug_macinfo)
