@@ -3,8 +3,13 @@ from urllib.request import HTTPError
 from            bs4 import BeautifulSoup
 import serial
 import re
+import sys
+import time 
+PORT = '/dev/cu.usbserial-A106TG3S'
+BAUDRATE = 9600
+TIMEOUT = None
 
-ser = serial.Serial('/dev/cu.usbserial-A106TG3S')
+ser = serial.Serial(PORT, BAUDRATE, timeout=TIMEOUT, write_timeout=None)
 print(ser.name)
    
 def getWindSpeed():
@@ -24,7 +29,8 @@ def getWindSpeed():
 
 def getTemperature():
     try:
-        html = urlopen("https://weather.com/weather/today/l/33.42,-111.83")
+        #html = urlopen("https://weather.com/weather/today/l/33.42,-111.83") #mesa
+        html = urlopen("https://weather.com/weather/today/l/VEXX6492:1:VE") #hot place (africa)
     except HTTPError as e:
         return None
     try:
@@ -34,10 +40,25 @@ def getTemperature():
         return None
     return temp[0:2] 
 
-
+speed1 = sys.argv[1];
+speed = speed1
 while (1 == 1):
-    speed = getWindSpeed()
-    #print("%d" % ord(speed))
+    #speed = '50'#getWindSpeed()
+    ser.reset_input_buffer() #these are necessary
+    ser.reset_output_buffer()
+
+    temperature = '92'#getTemperature()
+    print(speed)
+    print(temperature)
+    print("\r\n")
     ser.write(speed.encode("ascii"))
     ser.write('\r'.encode("ascii"))
+    ack = ser.read(1)
+    print(ack)
     
+    ser.write(temperature.encode("ascii"))
+    ser.write('\r'.encode("ascii"))
+    ack = ser.read(1)
+    print(ack)
+    print("going to sleep")
+    #time.sleep(5)
