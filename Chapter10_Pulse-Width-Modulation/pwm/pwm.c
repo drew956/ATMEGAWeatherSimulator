@@ -120,23 +120,19 @@ int main(void) {
             PORTB |=   (1 << PB2); //        digitalWrite (MotorB1, HIGH);
             PORTB &=  ~(1 << PB1); //        digitalWrite (MotorB2, LOW);
             _delay_ms(200); //reverse for 200 milliseconds
-            //printString("getting number\n");
-            //void readString(char myString[], uint8_t maxLength) {
 
-            //speed = readString();//getNumber();  
-            //temperature = getNumber();   //this should wait until the data is ready
             silentReadString(speedChar, 5);
-            printString(speedChar);
+            //printString(speedChar);
             
             
             silentReadString(tempChar, 5);
-            printString(tempChar);
+            //printString(tempChar);
             
-            //myPrintToLCD(speedChar);
-            //myPrintToLCD(tempChar);
             printWindSpeedAndTemperature(speedChar, tempChar);
             temperature = convertToNumber(tempChar);
-            printWord(temperature);
+            speed = convertToNumber(speedChar);
+            //printWord(temperature);
+
             //set back to the right direction
             PORTB &=  ~(1 << PB2); //        digitalWrite (MotorB1, LOW);
             PORTB |=  (1 << PB1);  //        digitalWrite (MotorB2, HIGH);
@@ -144,7 +140,7 @@ int main(void) {
         }
 
         //int temperature = getNumber();
-        //pwmMotor(speed);
+        pwmMotor(speed);
         setTempLeds(temperature);
         //myPrintToLCD(speed);
     

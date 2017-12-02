@@ -8,13 +8,14 @@ import time
 PORT = '/dev/cu.usbserial-A106TG3S'
 BAUDRATE = 9600
 TIMEOUT = None
+LOCATION = "https://weather.com/weather/today/l/33.42,-111.83" #Mesa
 
 ser = serial.Serial(PORT, BAUDRATE, timeout=TIMEOUT, write_timeout=None)
 print(ser.name)
    
 def getWindSpeed():
     try:
-        html = urlopen("https://weather.com/weather/today/l/33.42,-111.83")
+        html = urlopen(LOCATION)
     except HTTPError as e:
         return None
     try:
@@ -29,8 +30,8 @@ def getWindSpeed():
 
 def getTemperature():
     try:
-        #html = urlopen("https://weather.com/weather/today/l/33.42,-111.83") #mesa
-        html = urlopen("https://weather.com/weather/today/l/VEXX6492:1:VE") #hot place (africa)
+        html = urlopen(LOCATION) #mesa
+        #html = urlopen("https://weather.com/weather/today/l/VEXX6492:1:VE") #hot place (africa)
     except HTTPError as e:
         return None
     try:
@@ -40,25 +41,19 @@ def getTemperature():
         return None
     return temp[0:2] 
 
-speed1 = sys.argv[1];
-speed = speed1
+#speed1 = sys.argv[1]
+#speed = speed1 + '\r'
+#temp2 = sys.argv[2]
+#temperature = temp2 + '\r'
 while (1 == 1):
-    #speed = '50'#getWindSpeed()
+    speed = getWindSpeed() + '\r'
     ser.reset_input_buffer() #these are necessary
     ser.reset_output_buffer()
 
-    temperature = '92'#getTemperature()
-    print(speed)
-    print(temperature)
-    print("\r\n")
-    ser.write(speed.encode("ascii"))
-    ser.write('\r'.encode("ascii"))
-    ack = ser.read(1)
-    print(ack)
-    
+    temperature = getTemperature() + '\r'
     ser.write(temperature.encode("ascii"))
-    ser.write('\r'.encode("ascii"))
-    ack = ser.read(1)
-    print(ack)
+        
+    ser.write(speed.encode("ascii"))
+
     print("going to sleep")
-    #time.sleep(5)
+    time.sleep(5)
