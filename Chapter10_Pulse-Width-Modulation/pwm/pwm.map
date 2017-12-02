@@ -12,6 +12,8 @@ Archive member included because of file (symbol)
                               pwm.o (__do_copy_data)
 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
                               pwm.o (__do_clear_bss)
+/usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strrev.o)
+                              pwm.o (strrev)
 
 Discarded input sections
 
@@ -40,14 +42,10 @@ Discarded input sections
                 0x00000000        0x2 pwm.o
  .text          0x00000000        0x0 ../../AVR-Programming-Library/USART.o
  .bss           0x00000000        0x0 ../../AVR-Programming-Library/USART.o
- .text.printString
-                0x00000000       0x26 ../../AVR-Programming-Library/USART.o
  .text.readString
                 0x00000000       0x58 ../../AVR-Programming-Library/USART.o
  .text.printByte
                 0x00000000       0x32 ../../AVR-Programming-Library/USART.o
- .text.printWord
-                0x00000000       0x76 ../../AVR-Programming-Library/USART.o
  .text.printBinaryByte
                 0x00000000       0x3c ../../AVR-Programming-Library/USART.o
  .text.nibbleToHexCharacter
@@ -75,8 +73,6 @@ Discarded input sections
  .bss           0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.mul
                 0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
- .text.libgcc.div
-                0x00000000       0x28 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc   0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.prologue
                 0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
@@ -146,6 +142,8 @@ Discarded input sections
                 0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
                 0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .text          0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strrev.o)
+ .bss           0x00000000        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strrev.o)
 
 Memory Configuration
 
@@ -262,7 +260,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x424
+.text           0x00000000      0x514
  *(.vectors)
  .vectors       0x00000000       0x68 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm168.o
                 0x00000000                __vectors
@@ -377,31 +375,43 @@ END GROUP
                 0x00000246       0x4c pwm.o
                 0x00000246                silentReadString
  .text.convertToNumber
-                0x00000292       0x3a pwm.o
+                0x00000292       0x3e pwm.o
                 0x00000292                convertToNumber
  .text.setTempLeds
-                0x000002cc       0x12 pwm.o
-                0x000002cc                setTempLeds
+                0x000002d0       0x12 pwm.o
+                0x000002d0                setTempLeds
  .text.printWindSpeedAndTemperature
-                0x000002de       0x78 pwm.o
-                0x000002de                printWindSpeedAndTemperature
+                0x000002e2       0x78 pwm.o
+                0x000002e2                printWindSpeedAndTemperature
  .text.startup.main
-                0x00000356       0x8c pwm.o
-                0x00000356                main
+                0x0000035a       0x94 pwm.o
+                0x0000035a                main
  .text.initUSART
-                0x000003e2       0x22 ../../AVR-Programming-Library/USART.o
-                0x000003e2                initUSART
+                0x000003ee       0x22 ../../AVR-Programming-Library/USART.o
+                0x000003ee                initUSART
  .text.transmitByte
-                0x00000404        0xe ../../AVR-Programming-Library/USART.o
-                0x00000404                transmitByte
+                0x00000410        0xe ../../AVR-Programming-Library/USART.o
+                0x00000410                transmitByte
  .text.receiveByte
-                0x00000412        0xe ../../AVR-Programming-Library/USART.o
-                0x00000412                receiveByte
-                0x00000420                . = ALIGN (0x2)
+                0x0000041e        0xe ../../AVR-Programming-Library/USART.o
+                0x0000041e                receiveByte
+ .text.printString
+                0x0000042c       0x26 ../../AVR-Programming-Library/USART.o
+                0x0000042c                printString
+ .text.printWord
+                0x00000452       0x76 ../../AVR-Programming-Library/USART.o
+                0x00000452                printWord
+ .text.libgcc.div
+                0x000004c8       0x28 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x000004c8                __udivmodhi4
+ .text.avr-libc
+                0x000004f0       0x20 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strrev.o)
+                0x000004f0                strrev
+                0x00000510                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000420        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
-                0x00000420                exit
-                0x00000420                _exit
+ .fini9         0x00000510        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x00000510                exit
+                0x00000510                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -420,11 +430,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000420        0x4 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .fini0         0x00000510        0x4 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000424                _etext = .
+                0x00000514                _etext = .
 
-.data           0x00800100       0x1e load address 0x00000424
+.data           0x00800100       0x1e load address 0x00000514
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm168.o
@@ -437,6 +447,7 @@ END GROUP
  .data          0x00800100        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
  .data          0x00800100        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
  .data          0x00800100        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .data          0x00800100        0x0 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strrev.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
@@ -454,8 +465,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 0x0080011e                PROVIDE (__bss_end, .)
-                0x00000424                __data_load_start = LOADADDR (.data)
-                0x00000442                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000514                __data_load_start = LOADADDR (.data)
+                0x00000532                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080011e        0x0
                 0x0080011e                PROVIDE (__noinit_start, .)
@@ -544,42 +555,42 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x171c
+.debug_info     0x00000000     0x1781
  *(.debug_info)
  .debug_info    0x00000000      0x766 lcd.o
- .debug_info    0x00000766      0x76a pwm.o
- .debug_info    0x00000ed0      0x3d8 ../../AVR-Programming-Library/USART.o
- .debug_info    0x000012a8       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
- .debug_info    0x00001366       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
- .debug_info    0x00001424       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
- .debug_info    0x000014e2       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
- .debug_info    0x000015a0       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
- .debug_info    0x0000165e       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .debug_info    0x00000766      0x7cf pwm.o
+ .debug_info    0x00000f35      0x3d8 ../../AVR-Programming-Library/USART.o
+ .debug_info    0x0000130d       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
+ .debug_info    0x000013cb       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+ .debug_info    0x00001489       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+ .debug_info    0x00001547       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .debug_info    0x00001605       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .debug_info    0x000016c3       0xbe /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x725
+.debug_abbrev   0x00000000      0x74d
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x2ca lcd.o
- .debug_abbrev  0x000002ca      0x277 pwm.o
- .debug_abbrev  0x00000541      0x16c ../../AVR-Programming-Library/USART.o
- .debug_abbrev  0x000006ad       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
- .debug_abbrev  0x000006c1       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
- .debug_abbrev  0x000006d5       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
- .debug_abbrev  0x000006e9       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
- .debug_abbrev  0x000006fd       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
- .debug_abbrev  0x00000711       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .debug_abbrev  0x000002ca      0x29f pwm.o
+ .debug_abbrev  0x00000569      0x16c ../../AVR-Programming-Library/USART.o
+ .debug_abbrev  0x000006d5       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
+ .debug_abbrev  0x000006e9       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+ .debug_abbrev  0x000006fd       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+ .debug_abbrev  0x00000711       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .debug_abbrev  0x00000725       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .debug_abbrev  0x00000739       0x14 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
 
-.debug_line     0x00000000      0x85b
+.debug_line     0x00000000      0x869
  *(.debug_line)
  .debug_line    0x00000000      0x29e lcd.o
- .debug_line    0x0000029e      0x1ef pwm.o
- .debug_line    0x0000048d      0x182 ../../AVR-Programming-Library/USART.o
- .debug_line    0x0000060f       0x62 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
- .debug_line    0x00000671       0x6a /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
- .debug_line    0x000006db       0x69 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
- .debug_line    0x00000744       0x58 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
- .debug_line    0x0000079c       0x61 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
- .debug_line    0x000007fd       0x5e /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .debug_line    0x0000029e      0x1fd pwm.o
+ .debug_line    0x0000049b      0x182 ../../AVR-Programming-Library/USART.o
+ .debug_line    0x0000061d       0x62 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodqi4.o)
+ .debug_line    0x0000067f       0x6a /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+ .debug_line    0x000006e9       0x69 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+ .debug_line    0x00000752       0x58 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .debug_line    0x000007aa       0x61 /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .debug_line    0x0000080b       0x5e /usr/local/CrossPack-AVR-20131216/lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
 
 .debug_frame    0x00000000      0x394
  *(.debug_frame)
@@ -587,20 +598,20 @@ END GROUP
  .debug_frame   0x0000013c      0x10c pwm.o
  .debug_frame   0x00000248      0x14c ../../AVR-Programming-Library/USART.o
 
-.debug_str      0x00000000      0x449
+.debug_str      0x00000000      0x450
  *(.debug_str)
  .debug_str     0x00000000      0x26c lcd.o
                                 0x2aa (size before relaxing)
- .debug_str     0x0000026c      0x12c pwm.o
-                                0x336 (size before relaxing)
- .debug_str     0x00000398       0xb1 ../../AVR-Programming-Library/USART.o
+ .debug_str     0x0000026c      0x13c pwm.o
+                                0x346 (size before relaxing)
+ .debug_str     0x000003a8       0xa8 ../../AVR-Programming-Library/USART.o
                                 0x27c (size before relaxing)
 
-.debug_loc      0x00000000      0xf36
+.debug_loc      0x00000000      0xf11
  *(.debug_loc)
  .debug_loc     0x00000000      0x442 lcd.o
- .debug_loc     0x00000442      0x5b3 pwm.o
- .debug_loc     0x000009f5      0x541 ../../AVR-Programming-Library/USART.o
+ .debug_loc     0x00000442      0x58e pwm.o
+ .debug_loc     0x000009d0      0x541 ../../AVR-Programming-Library/USART.o
 
 .debug_macinfo
  *(.debug_macinfo)
